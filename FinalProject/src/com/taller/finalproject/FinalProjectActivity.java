@@ -1,5 +1,8 @@
 package com.taller.finalproject;
 
+import com.taller.finalproject.R;
+import com.taller.finalproject.R.layout;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
