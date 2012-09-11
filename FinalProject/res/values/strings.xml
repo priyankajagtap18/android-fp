@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, FinalProjectActivity!</string>
+    <string name="app_name">FinalProject</string>
+    
+	<!--     Main menu options -->
+    <string name="weather">Weather</string>
+    <string name="battery">Battery log </string>
+    <string name="mail">Send a mail</string>
+    
+
+</resources>
