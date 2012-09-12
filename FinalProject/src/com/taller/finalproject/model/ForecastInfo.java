@@ -1,6 +1,17 @@
 package com.taller.finalproject.model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.widget.Toast;
 
 public class ForecastInfo {
 	private Date mDate;
@@ -12,6 +23,7 @@ public class ForecastInfo {
 	private String mWindDirection;
 	private double mWindSpeed;
 	private String mIconUrl;
+	private Bitmap mIconBitmap;
 
 	public ForecastInfo(){
 		
@@ -84,10 +96,32 @@ public class ForecastInfo {
 
 	public void setIconUrl(String mIconUrl) {
 		this.mIconUrl = mIconUrl;
+		
+		
+	    try {
+	        URL url = new URL(mIconUrl);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        this.mIconBitmap = BitmapFactory.decodeStream(input); 
+	    } catch (IOException e) {
+	        e.printStackTrace();
+
+	    }
+		
 	}
 
 	public String getIconUrl() {
 		return mIconUrl;
+	}
+
+	public void setIconBitmap(Bitmap mIconBitmap) {
+		this.mIconBitmap = mIconBitmap;
+	}
+
+	public Bitmap getIconBitmap() {
+		return mIconBitmap;
 	}
 	
 }

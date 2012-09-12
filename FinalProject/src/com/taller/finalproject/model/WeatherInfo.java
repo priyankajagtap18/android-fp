@@ -1,6 +1,13 @@
 package com.taller.finalproject.model;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class WeatherInfo {
 	
@@ -14,6 +21,7 @@ public class WeatherInfo {
 	private double mVisibility;
 	private double mPressure;
 	private String mIconUrl;
+	private Bitmap mIconBitmap;
 	
 	public WeatherInfo(){
 		
@@ -95,9 +103,28 @@ public class WeatherInfo {
 
 	public void setIconUrl(String mIconUrl) {
 		this.mIconUrl = mIconUrl;
+		try {
+	        URL url = new URL(mIconUrl);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        this.mIconBitmap = BitmapFactory.decodeStream(input); 
+	    } catch (IOException e) {
+	        e.printStackTrace();
+
+	    }
 	}
 
 	public String getIconUrl() {
 		return mIconUrl;
+	}
+	
+	public void setIconBitmap(Bitmap mIconBitmap) {
+		this.mIconBitmap = mIconBitmap;
+	}
+
+	public Bitmap getIconBitmap() {
+		return mIconBitmap;
 	}
 }
