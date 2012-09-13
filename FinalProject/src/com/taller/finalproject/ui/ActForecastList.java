@@ -1,21 +1,27 @@
 package com.taller.finalproject.ui;
 
-import com.taller.finalproject.R;
-import com.taller.finalproject.ui.adapters.WeatherListAdapter;
-import com.taller.finalproject.model.*;
-
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.taller.finalproject.R;
+import com.taller.finalproject.model.Forecast;
+import com.taller.finalproject.model.WeatherManager;
+import com.taller.finalproject.ui.adapters.WeatherListAdapter;
 
 public class ActForecastList extends Activity {
 	
-	TextView txtTodayTitle;
+	ImageView imgCurrentWeather;
+	
+	TextView txtTodayCondition;
+	TextView txtHumidity;
+	TextView txtPressure;
+	TextView txtVisibility;
+	TextView txtWindDirection;
+	TextView txtWindSpeed;
+	TextView txtTemp;
 	
 	ListView lstForecast;
 	
@@ -26,17 +32,32 @@ public class ActForecastList extends Activity {
 
         setContentView(R.layout.lay_forecast_list);
         
-        txtTodayTitle = (TextView) findViewById(R.id.txtTodayTitle);
+        imgCurrentWeather = (ImageView) findViewById(R.id.imgCurrentWeather);
+        
 
+        txtTodayCondition = (TextView) findViewById(R.id.txtTodayCondition);
+        
+        txtTemp = (TextView) findViewById(R.id.txtTemp);
+        txtHumidity = (TextView) findViewById(R.id.txtHumidity);
+        txtPressure = (TextView) findViewById(R.id.txtPressure);
+        txtVisibility = (TextView) findViewById(R.id.txtVisibility);
+        txtWindDirection = (TextView) findViewById(R.id.txtWindDirection);
+        txtWindSpeed = (TextView) findViewById(R.id.txtWindSpeed);
+        
         lstForecast = (ListView) findViewById(R.id.lstForecast);
         
         Forecast currentForecast = WeatherManager.getInstance().getWeatherForecast();
-        txtTodayTitle.setText("Monday, 22th march");
-        
-        //setIconImage(currentForecast.getCurrentWeather().getIconUrl());
-        ImageView imgCurrentWeather = (ImageView) findViewById(R.id.imgCurrentWeather);
+      
         imgCurrentWeather.setImageBitmap(currentForecast.getCurrentWeather().getIconBitmap());
-        
+
+        txtTodayCondition.setText(currentForecast.getCurrentWeather().getCondition());
+        txtTemp.setText(Double.toString(currentForecast.getCurrentWeather().getCelciusTemp()) + " °C");
+        txtHumidity.setText(Double.toString(currentForecast.getCurrentWeather().getHumidity()) + " %");
+        txtPressure.setText(Double.toString(currentForecast.getCurrentWeather().getPressure()) + " Pa");
+        txtVisibility.setText(Double.toString(currentForecast.getCurrentWeather().getVisibility()) + " Km");
+        txtWindDirection.setText(currentForecast.getCurrentWeather().getWindDirection());
+        txtWindSpeed.setText(Double.toString(currentForecast.getCurrentWeather().getWindSpeed()) + " Km/h");
+                
         lstForecast.setAdapter(new WeatherListAdapter(this,currentForecast.getForecastWeather()));
 	}
 

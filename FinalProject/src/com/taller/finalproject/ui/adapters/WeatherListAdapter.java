@@ -2,20 +2,15 @@ package com.taller.finalproject.ui.adapters;
 
 import java.util.ArrayList;
 
-import com.taller.finalproject.R;
-import com.taller.finalproject.model.ForecastInfo;
-import com.taller.finalproject.ui.ActForecastList;
-
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.taller.finalproject.R;
+import com.taller.finalproject.model.ForecastInfo;
 
 public class WeatherListAdapter extends BaseAdapter {
 

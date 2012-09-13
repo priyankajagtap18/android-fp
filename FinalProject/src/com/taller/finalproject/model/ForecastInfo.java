@@ -1,6 +1,5 @@
 package com.taller.finalproject.model;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -9,9 +8,6 @@ import java.util.Date;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.widget.Toast;
 
 public class ForecastInfo {
 	private Date mDate;

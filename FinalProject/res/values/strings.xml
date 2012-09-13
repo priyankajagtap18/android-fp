@@ -8,6 +8,14 @@
     <string name="weather">Weather</string>
     <string name="battery">Battery log </string>
     <string name="mail">Send a mail</string>
+
     
+    
+    <string name="temp">Temp.</string>
+    <string name="humidity">Hum.</string>
+    <string name="windDirection">Wind</string>
+    <string name="windSpeed">Speed</string>
+    <string name="visibility">Vis.</string>
+    <string name="pressure">Press.</string>
 
 </resources>
