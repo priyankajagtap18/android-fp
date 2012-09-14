@@ -18,10 +18,7 @@ public class FinalProjectActivity extends Activity {
         Log.i("AndroidFinalProject", "Main activity created");
         
         setContentView(R.layout.main);
-         
-        WeatherManager.getInstance().updateForecast();
-        Forecast clima = WeatherManager.getInstance().getWeatherForecast();
-        
+                
    }
 
 

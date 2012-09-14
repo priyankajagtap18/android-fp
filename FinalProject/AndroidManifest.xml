@@ -21,7 +21,13 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".ui.ActForecastList"/>
+        <activity 
+            android:name=".ui.ActForecastList"
+            android:configChanges="orientation|screenLayout" />
+        
+        <activity 
+            android:name=".ui.ActForecastDetails"
+            />
            
         
         <service android:name=".services.WeatherService"

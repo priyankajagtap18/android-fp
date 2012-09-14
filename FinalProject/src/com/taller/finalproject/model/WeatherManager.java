@@ -14,7 +14,7 @@ public class WeatherManager {
 	private static WeatherManager mInstance; //
 	
 	private Date mLastUdpate;
-	private Forecast mWeatherForecast;
+	private Forecast mForecastData;
 	private WeatherProvider mWeatherProvider;
 	
 	private WeatherManager(){
@@ -39,16 +39,16 @@ public class WeatherManager {
 	    Date now = new Date();
 	    
 		if (now.after(expireDate)){
-			mWeatherForecast = mWeatherProvider.requestWeatherForecast(DEFAULT_CITY, 5);
+			mForecastData = mWeatherProvider.requestWeatherForecast(DEFAULT_CITY, 5);
 			mLastUdpate = now;
 		}
 	}
 
-	public void setWeatherForecast(Forecast mWeatherForecast) {
-		this.mWeatherForecast = mWeatherForecast;
+	public void setForecastData(Forecast mWeatherForecast) {
+		this.mForecastData = mWeatherForecast;
 	}
 
-	public Forecast getWeatherForecast() {
-		return mWeatherForecast;
+	public Forecast getForecastData() {
+		return mForecastData;
 	}
 }

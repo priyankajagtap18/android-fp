@@ -17,5 +17,9 @@
     <string name="windSpeed">Speed</string>
     <string name="visibility">Vis.</string>
     <string name="pressure">Press.</string>
+    
+    <string name="maxTemp">Max.</string>
+    <string name="minTemp">Min.</string>
+    
 
 </resources>

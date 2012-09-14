@@ -58,7 +58,7 @@ public class WorldWeatherOnline extends WeatherProvider {
 		    forecastItem.setMaxCTemp(jForecastInfo.getDouble("tempMaxC"));
 		    forecastItem.setMaxFTemp(jForecastInfo.getDouble("tempMaxF"));
 		    forecastItem.setMinCTemp(jForecastInfo.getDouble("tempMinC"));
-		    forecastItem.setMaxFTemp(jForecastInfo.getDouble("tempMinF"));
+		    forecastItem.setMinFTemp(jForecastInfo.getDouble("tempMinF"));
 		    forecastItem.setWindDirection(jForecastInfo.getString("winddirection"));
 		    forecastItem.setWindSpeed(jForecastInfo.getDouble("windspeedKmph"));
 		    
