@@ -22,8 +22,7 @@
         </activity>
         
         <activity 
-            android:name=".ui.ActForecastList"
-            android:configChanges="orientation|screenLayout" />
+            android:name=".ui.ActForecastList"/>
         
         <activity 
             android:name=".ui.ActForecastDetails"

@@ -38,10 +38,10 @@ public class WeatherManager {
 	    Date expireDate = cal.getTime();
 	    Date now = new Date();
 	    
-		if (now.after(expireDate)){
+		//if (now.after(expireDate)){
 			mForecastData = mWeatherProvider.requestWeatherForecast(DEFAULT_CITY, 5);
 			mLastUdpate = now;
-		}
+		//}
 	}
 
 	public void setForecastData(Forecast mWeatherForecast) {

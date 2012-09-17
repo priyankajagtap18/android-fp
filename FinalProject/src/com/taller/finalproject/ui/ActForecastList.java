@@ -1,11 +1,15 @@
 package com.taller.finalproject.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
@@ -13,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.SavedState;
 
 import com.taller.finalproject.R;
 import com.taller.finalproject.model.Forecast;
@@ -21,6 +26,8 @@ import com.taller.finalproject.ui.adapters.ForecastListAdapter;
 
 public class ActForecastList extends Activity {
 	
+	private static final int LOADING_DIALOG = 0;
+
 	private ImageView imgCurrentWeather;
 	
 	private TextView txtTodayCondition;
@@ -36,14 +43,12 @@ public class ActForecastList extends Activity {
 	private ListView lstForecast;
 	private LinearLayout screenLayout;
 		
+	private WeatherRequestTask requestTask;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        mProgress = new ProgressDialog(this);
-        mProgress.setCancelable(false);
-        mProgress.setMessage("Getting weather data...");
-        
+                
         setContentView(R.layout.lay_forecast_list);
         
         imgCurrentWeather = (ImageView) findViewById(R.id.imgCurrentWeather);
@@ -57,14 +62,7 @@ public class ActForecastList extends Activity {
         txtWindSpeed = (TextView) findViewById(R.id.txtWindSpeed);
         screenLayout = (LinearLayout) findViewById(R.id.screenLayout);
         lstForecast = (ListView) findViewById(R.id.lstForecast);
-        
-
-        if (WeatherManager.getInstance().getForecastData() == null)
-        	new WeatherRequestTask().execute();
-        else{
-        	updateUI();
-        }
-        	
+                	
         lstForecast.setOnItemClickListener(new OnItemClickListener() {
         	
         	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -74,13 +72,36 @@ public class ActForecastList extends Activity {
         	}
 		});
         
+        requestWeatherData();
+
+	}
+	
+	private void requestWeatherData(){
+        requestTask = (WeatherRequestTask) getLastNonConfigurationInstance();
+		
+		if (requestTask == null){
+			requestTask = new WeatherRequestTask();
+		} 
+		
+		requestTask.setParentActivity(this);
+		
+		switch (requestTask.getStatus()) {
+		case FINISHED:
+			updateUI();
+			break;
+
+		case PENDING:
+			if (WeatherManager.getInstance().getForecastData() == null)
+				requestTask.execute();
+			else 
+				updateUI();
+			break;
+		}
 	}
 	
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		
-		
+	public WeatherRequestTask onRetainNonConfigurationInstance() {
+		return requestTask;
 	}
 	
 	protected void updateUI(){
@@ -105,17 +126,60 @@ public class ActForecastList extends Activity {
 		
 	}
 	
+	
 	protected void updateUIForecast(){
 		lstForecast.setAdapter(new ForecastListAdapter(this, WeatherManager.getInstance().getForecastData().getForecastWeather()));
 		
 	}
 
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_forecast_list, menu);
+         
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.mnSyncForecast:
+			screenLayout.setVisibility(View.GONE);
+			requestTask = new WeatherRequestTask();
+			requestTask.setParentActivity(this);
+			requestTask.execute();
+			break;
+
+		}
+		return super.onOptionsItemSelected(item);
+	}
+		
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Dialog dialog = null;
+		switch (id) {
+		case LOADING_DIALOG:
+			mProgress = new ProgressDialog(this);
+	        mProgress.setCancelable(false);
+	        mProgress.setMessage("Getting weather data...");
+	        dialog = mProgress;
+			break;
+
+		}
+		return dialog;
+	}
+	
 	private class WeatherRequestTask extends AsyncTask<Void, Void, Forecast>{
 
+		private static final int LOADING_DIALOG = 0;
+		private ActForecastList parentActivity;
+		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			mProgress.show();
+			parentActivity.showDialog(LOADING_DIALOG);
 		}
 		
 		@Override
@@ -130,9 +194,13 @@ public class ActForecastList extends Activity {
 		protected void onPostExecute(Forecast result) {
 			super.onPostExecute(result);
 			
-			updateUI();
+			parentActivity.updateUI();
 			
-			mProgress.dismiss();
+			parentActivity.removeDialog(LOADING_DIALOG);
+		}
+
+		public void setParentActivity(ActForecastList parentActivity) {
+			this.parentActivity = parentActivity;
 		}
 		
 	}
