@@ -7,7 +7,7 @@
 
     <Button
         android:layout_height="0dp"
-        android:layout_weight="0.33"
+        android:layout_weight="0.50"
         android:layout_width="fill_parent"
         android:textSize="35dp"
         android:gravity="center_horizontal|center"
@@ -22,7 +22,7 @@
       
     <Button 
         android:layout_height="0dp"
-        android:layout_weight="0.33"
+        android:layout_weight="0.50"
         android:layout_width="fill_parent"
         android:textSize="35dp"
         android:gravity="center_horizontal|center"
@@ -33,17 +33,6 @@
 		android:layout_marginBottom="2dp"
 		android:onClick="showBattery"
     />
-    
-    <Button
-        android:layout_height="0dp"
-        android:layout_weight="0.33"
-        android:layout_width="fill_parent"
-        android:textSize="35dp"
-        android:gravity="center_horizontal|center"
-        android:text="@string/mail"
-        android:textColor="@android:color/white"
-        android:background="@drawable/home_button_selector"
-        android:onClick="sendMail"
-    />
+
     
 </LinearLayout>

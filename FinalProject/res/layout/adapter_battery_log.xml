@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+
+    <TextView 
+        android:layout_width="0dp"
+        android:layout_weight="0.33"
+    	android:layout_height="match_parent"
+    	android:id="@+id/txtDate"
+    	android:text="@string/humidity"
+    	/>
+    
+    <TextView 
+        android:layout_width="0dp"
+        android:layout_weight="0.33"
+    	android:layout_height="match_parent"
+    	android:id="@+id/txtRelation"
+    	android:text="@string/hello"
+    	/>
+    
+    <TextView 
+        android:layout_width="0dp"
+        android:layout_weight="0.33"
+    	android:layout_height="match_parent"
+    	android:id="@+id/txtLevelPct"
+    	android:text="@string/battery"
+    	/>
+    
+</LinearLayout>

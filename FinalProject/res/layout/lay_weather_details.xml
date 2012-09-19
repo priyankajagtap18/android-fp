@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<LinearLayout
+    	android:layout_height="match_parent"
+    	android:layout_width="match_parent"
+    	android:background="@color/dark_gray"
+    	android:orientation="horizontal"     
+        >
+                        
+		<ImageView
+			android:id = "@+id/imgCondition" 
+	    	android:layout_width="70dp"
+	    	android:layout_height="70dp"
+	    	android:src="@drawable/ic_launcher"
+	    	android:layout_margin="5dp"
+	    	android:contentDescription="@string/app_name"
+	    	/>
+		
+	     <LinearLayout
+	    	android:layout_height="match_parent"
+	    	android:layout_width="match_parent"
+	    	android:background="@color/dark_gray"
+	    	android:orientation="vertical"     
+	        >
+				
+       		<TextView 
+		   	    android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		   	    android:textSize="20dp"
+			   	android:textStyle="bold"
+			   	android:layout_gravity="center_vertical"
+		   	    android:id="@+id/txtDayName"/>
+	         
+			<TextView
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:textSize="16dp"
+		   	    android:textStyle="bold"
+		   	    android:id="@+id/txtWeatherCondition"/>
+				
+			
+			<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			    android:id="@+id/tableLayout1"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent" 
+			    android:paddingTop="5dip">
+			    
+			    <TableRow
+			        android:id="@+id/tableRow1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="5dip">
+			         >
+			        
+			        <TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:text="@string/minTemp"
+				   	    android:textStyle="bold"
+				   	    android:layout_marginRight="15dp"/>
+	  	
+				   	<TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:id="@+id/txtMinTemp"
+				   	    />
+			
+			
+				</TableRow>
+				
+			    <TableRow
+			        android:id="@+id/tableRow2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="5dip">
+				   
+			        <TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:text="@string/maxTemp"
+				   	    android:textStyle="bold"
+				   	    android:layout_marginRight="15dp"/>
+		  	
+				   	<TextView
+				   	    android:id="@+id/txtMaxTemp" 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    />
+			        
+			    </TableRow>
+			
+			    <TableRow
+			        android:id="@+id/tableRow3"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="5dip">
+			
+			
+			        <TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:text="@string/windDirection"
+				   	    android:textStyle="bold"
+				   	    android:layout_marginRight="15dp"/>
+		  	
+				   	<TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:id="@+id/txtWindDirection"
+				   	    android:layout_marginRight="15dp"/>
+			        
+				</TableRow>
+
+			     <TableRow
+			        android:id="@+id/tableRow4"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:paddingBottom="5dip">
+				   
+					<TextView 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    android:text="@string/windSpeed"
+				   	    android:textStyle="bold"
+				   	    android:layout_marginRight="15dp"/>
+		  	
+				   	<TextView
+				   	    android:id="@+id/txtWindSpeed" 
+				   	    android:layout_width="wrap_content"
+				   	    android:layout_height="wrap_content"
+				   	    />
+			         
+			     </TableRow>
+			    
+			</TableLayout>
+        
+        
+    </LinearLayout>
+    
+    
+	</LinearLayout>
+	
+</LinearLayout>	

@@ -19,12 +19,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.SavedState;
 
+import com.taller.finalproject.ActionController;
+import com.taller.finalproject.ActionController.Action;
+import com.taller.finalproject.IActionListener;
 import com.taller.finalproject.R;
 import com.taller.finalproject.model.Forecast;
 import com.taller.finalproject.model.WeatherManager;
 import com.taller.finalproject.ui.adapters.ForecastListAdapter;
 
-public class ActForecastList extends Activity {
+public class ActForecastList extends Activity implements IActionListener{
 	
 	private static final int LOADING_DIALOG = 0;
 
@@ -72,8 +75,32 @@ public class ActForecastList extends Activity {
         	}
 		});
         
+        ActionController.getInstance().registerListener(this);
+        
         requestWeatherData();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		ActionController.getInstance().unregisterListener(this);
+	}
+
+	public void notifyAction(ActionController.Action action) {
+		switch (action) {
+		case WEATHER_REQUEST_INITIATED:
+			showDialog(LOADING_DIALOG);
+			break;
+
+		case WEATHER_REQUEST_FINISHED:
+			updateUI();
+			
+			removeDialog(LOADING_DIALOG);
+			break;
+		}
+		
 	}
 	
 	private void requestWeatherData(){
@@ -82,9 +109,7 @@ public class ActForecastList extends Activity {
 		if (requestTask == null){
 			requestTask = new WeatherRequestTask();
 		} 
-		
-		requestTask.setParentActivity(this);
-		
+				
 		switch (requestTask.getStatus()) {
 		case FINISHED:
 			updateUI();
@@ -148,7 +173,6 @@ public class ActForecastList extends Activity {
 		case R.id.mnSyncForecast:
 			screenLayout.setVisibility(View.GONE);
 			requestTask = new WeatherRequestTask();
-			requestTask.setParentActivity(this);
 			requestTask.execute();
 			break;
 
@@ -172,14 +196,11 @@ public class ActForecastList extends Activity {
 	}
 	
 	private class WeatherRequestTask extends AsyncTask<Void, Void, Forecast>{
-
-		private static final int LOADING_DIALOG = 0;
-		private ActForecastList parentActivity;
 		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			parentActivity.showDialog(LOADING_DIALOG);
+			ActionController.getInstance().notifyAction(ActionController.Action.WEATHER_REQUEST_INITIATED);
 		}
 		
 		@Override
@@ -193,14 +214,8 @@ public class ActForecastList extends Activity {
 		@Override
 		protected void onPostExecute(Forecast result) {
 			super.onPostExecute(result);
-			
-			parentActivity.updateUI();
-			
-			parentActivity.removeDialog(LOADING_DIALOG);
-		}
+			ActionController.getInstance().notifyAction(ActionController.Action.WEATHER_REQUEST_FINISHED);
 
-		public void setParentActivity(ActForecastList parentActivity) {
-			this.parentActivity = parentActivity;
 		}
 		
 	}
