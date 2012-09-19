@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="40dp"
+    android:orientation="horizontal" 
+    android:background="@color/middle_gray"
+    android:padding="5dp"
+    android:gravity="center_vertical|center_horizontal">
     
 
-    <TextView 
-        android:layout_width="0dp"
-        android:layout_weight="0.33"
-    	android:layout_height="match_parent"
-    	android:id="@+id/txtDate"
-    	android:text="@string/humidity"
-    	/>
+    <ImageView 
+    	android:layout_width="wrap_content"
+    	android:layout_height="30dp"
+    	android:id="@+id/imgBatteryStatus"
+    	android:contentDescription="@android:string/untitled"
+    />
+       
+   <TextView 
+       	android:layout_width="wrap_content"
+	   	android:layout_height="fill_parent"
+	   	android:layout_marginLeft="10dp"
+	   	android:id="@+id/txtRelation"
+	   	android:gravity="right"
+	   	/>
+   
+   <TextView 
+		android:layout_width="wrap_content"
+	   	android:layout_height="fill_parent"
+	   	android:layout_marginLeft="10dp"
+	   	android:id="@+id/txtLevelPct"
+	   	android:layout_gravity="right"
+	   	/>    
     
-    <TextView 
-        android:layout_width="0dp"
-        android:layout_weight="0.33"
-    	android:layout_height="match_parent"
-    	android:id="@+id/txtRelation"
-    	android:text="@string/hello"
-    	/>
-    
-    <TextView 
-        android:layout_width="0dp"
-        android:layout_weight="0.33"
-    	android:layout_height="match_parent"
-    	android:id="@+id/txtLevelPct"
-    	android:text="@string/battery"
-    	/>
-    
+   <TextView 
+       	android:layout_width="fill_parent"
+	   	android:layout_height="fill_parent"
+	   	android:id="@+id/txtDate"
+	   	android:gravity="right"
+	   	android:layout_marginLeft="5dp"
+	   	/>
 </LinearLayout>
