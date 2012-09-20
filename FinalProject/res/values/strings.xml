@@ -21,5 +21,7 @@
     <string name="maxTemp">Max.</string>
     <string name="minTemp">Min.</string>
     
+    <string name="mailSubject">Android Battery Log</string>
+    
 
 </resources>

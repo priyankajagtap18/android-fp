@@ -26,6 +26,14 @@ public class BatteryLogManager {
 		return mBatteryLog;
 	}
 	
-	
+	public String getStringSummary(){
+		String s = "";
+		
+		for (BatteryLogItem item : mBatteryLog) {
+			s += item.getSummary() + "\n";
+		}
+		
+		return s;
+	}
 	
 }

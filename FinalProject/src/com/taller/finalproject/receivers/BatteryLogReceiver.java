@@ -32,7 +32,6 @@ public class BatteryLogReceiver extends BroadcastReceiver {
 
 		BatteryLogManager.getInstance().addBatteryLog(item);
 		
-
 		CharSequence title = "New battery log";
 		
 		if (notification == null){		

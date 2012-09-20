@@ -30,7 +30,8 @@ public final class R {
         public static final int imgCurrentWeather=0x7f07000c;
         public static final int lstBatteryLog=0x7f070009;
         public static final int lstForecast=0x7f070016;
-        public static final int mnSyncForecast=0x7f070019;
+        public static final int mnSendMail=0x7f070019;
+        public static final int mnSyncForecast=0x7f07001a;
         public static final int screenLayout=0x7f07000a;
         public static final int tableLayout1=0x7f07000d;
         public static final int tableRow1=0x7f07000e;
@@ -61,7 +62,8 @@ public final class R {
         public static final int main=0x7f030005;
     }
     public static final class menu {
-        public static final int menu_forecast_list=0x7f060000;
+        public static final int menu_battery_log=0x7f060000;
+        public static final int menu_forecast_list=0x7f060001;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
@@ -69,6 +71,7 @@ public final class R {
         public static final int hello=0x7f050000;
         public static final int humidity=0x7f050006;
         public static final int mail=0x7f050004;
+        public static final int mailSubject=0x7f05000d;
         public static final int maxTemp=0x7f05000b;
         public static final int minTemp=0x7f05000c;
         public static final int pressure=0x7f05000a;

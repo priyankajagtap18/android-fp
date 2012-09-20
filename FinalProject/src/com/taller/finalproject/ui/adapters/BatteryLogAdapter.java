@@ -70,7 +70,7 @@ public class BatteryLogAdapter extends BaseAdapter {
 			holder.imgBatteryStatus.setImageDrawable(activity.getResources().getDrawable(R.drawable.battery_status_75));
 		} else if (pctLevel > 25) {
 			holder.imgBatteryStatus.setImageDrawable(activity.getResources().getDrawable(R.drawable.battery_status_50));
-		} else if (pctLevel > 25) {
+		} else if (pctLevel > 10) {
 			holder.imgBatteryStatus.setImageDrawable(activity.getResources().getDrawable(R.drawable.battery_status_25));
 		} else if (pctLevel > 0) {
 			holder.imgBatteryStatus.setImageDrawable(activity.getResources().getDrawable(R.drawable.battery_status_0));
